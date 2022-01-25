@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title> Week 2</Title>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/css/foundation.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/js/foundation.min.js"></script>
+        
+        <style>
+            .cell {
+                border: 1px solid black;
+            }
+            #entire {
+                margin: 5px;
+            }
+            #nav {
+                top: 0px;
+                width: 100%;
+                border: 1px solid black;
+                text-align: right;
+                height: auto;
+                padding: 5px;
+            }
+            .butt {
+                border:none;
+                background: none;
+                font-size: 15px;
+            }
+            .butt:hover {
+                opacity: 0.5;
+            }
+            #top_pic {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+            }
+            #bodytxt {
+                padding: 50px;
+                text-align: center;
+                height: inherit;
+            }
+            #sidebar {
+                background: lightpink;
+                height: 58vh;
+                font-size: 15px;
+                padding: 5px;
+                border-right: none !important;
+            }
+            footer {
+                width: 100%;
+                bottom: 0px;
+                border: none !important;
+            }
+            #copyright {
+                text-align: left;
+                margin: 15px;
+                float: left !important; 
+            }
+            #d_credit {
+                text-align: right;
+                margin: 15px;
+                float: right;
+            }
+            
+        </style>
+
+        <script>
+            function changeBody() {
+                document.getElementById("bodytxt").innerHTML = "Hey, you changed me! The girl in the picture above is a character named Komi from a manga about a shy girl who had a hard time interacting with others. It is a comedic, slice of life series.";
+                
+            }
+
+            function alertfunc() {
+                alert("Hello! This is a page about manga!");
+            }  
+        </script>
+
+    </head>
+    <body> 
+            
+            <div id="nav">
+                <button class="butt" onclick="changeBody()">Update Body</button> |
+                <button class="butt" onclick="alertfunc()">Alert</button>
+            </div>
+
+            <img id="top_pic" class="cell small-12 medium-12 large-12" src="https://user-images.githubusercontent.com/77510812/150658076-477e33a1-0575-4c34-8260-e1bdf2044abd.jpg"/>
+            <div id="entire">
+                <div class="grid-x">
+                        <div id="sidebar" class="cell small-4 medium-4 large-2">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div> 
+
+                        <div class="cell small-8 medium-8 large-10">
+                            <p id="bodytxt">Hi! According to the dictionary, manga is "a style of Japanese comic books and graphic novels, typically aimed at adults as well as children." </p>
+                        </div> 
+                    
+                </div>
+            </div>
+    </body>
+    <footer class="cell small-12 medium-12 large-12">
+        <div id="copyright">
+            © Constance Shelton, All Rights Reserved
+        </div>
+        <div id="d_credit">
+            Design by Constance Shelton & Robert Joseph, Ph.D.
+        </div>
+    </footer>
+</html>
