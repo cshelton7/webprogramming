@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <Title> Week 3</Title>
+        <php>
+            require("functions.php")
+        </php>
+        <Title> Week 4</Title>
         
         <script src="./jquery/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="./foundation/css/foundation.css">
@@ -79,6 +82,7 @@
     <body> 
             
             <div id="nav">
+                <?php showToday(); ?>
                 <button class="butt" onclick="changeBody()">Update Body</button> |
                 <button class="butt" onclick="alertfunc()">Alert</button>
             </div>
