@@ -82,7 +82,6 @@
     <body> 
             
             <div id="nav">
-                <?php showToday(); ?>
                 <button class="butt" onclick="changeBody()">Update Body</button> |
                 <button class="butt" onclick="alertfunc()">Alert</button>
             </div>
@@ -96,6 +95,7 @@
 
                         <div class="cell small-8 medium-8 large-10">
                             <p id="bodytxt">Hi! According to the dictionary, manga is "a style of Japanese comic books and graphic novels, typically aimed at adults as well as children." </p>
+                            <?php showToday(); ?>
                         </div> 
                     
                 </div>

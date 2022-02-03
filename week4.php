@@ -1,6 +1,4 @@
 <php>
-   require("week3.php")
-
-    PrintMsg(>> "Hello there!"); 
+   require("week3.php");
     
 </php>
