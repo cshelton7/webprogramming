@@ -2,7 +2,7 @@
 <html>
     <head>
         <php>
-            require("functions.php")
+            require("function.php")
         </php>
         <Title> Week 4</Title>
         
