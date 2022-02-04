@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <php>
+        <?php
             require("functions.php")
-        </php>
+        ?>
         <Title> Week 4</Title>
         
         <script src="./jquery/jquery-3.6.0.min.js"></script>
@@ -86,7 +86,7 @@
                 <button class="butt" onclick="alertfunc()">Alert</button>
             </div>
 
-            <img id="top_pic" class="cell small-12 medium-12 large-12" src="https://user-images.githubusercontent.com/77510812/150658076-477e33a1-0575-4c34-8260-e1bdf2044abd.jpg"/>
+            <img id="top_pic" class="cell small-12 medium-12 large-12" src="https://i.postimg.cc/d1Qp0mpg/komi.jpg"/>
             <div id="entire">
                 <div class="grid-x">
                         <div id="sidebar" class="cell small-4 medium-4 large-2">
