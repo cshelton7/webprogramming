@@ -1,114 +1,104 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <?php
-            require("functions.php");
 
+
+        <?php
+            define( 'DB_HOST', 'localhost' );
+            define ('DB_CREDS', 'cshelton7');
+
+        //functions I need
+            function connServer() {
+                //connecting to the MySQL server
+        
+                $conn = mysqli_connect(DB_HOST, DB_CREDS, DB_CREDS, DB_CREDS);
+        
+                //ensure connection is working
+                if (!$conn) {
+                    die("I'm sorry, your connection failed: " . mysqli_connect_error());
+                }
+        
+                //close the connection
+                mysqli_close($conn);
+            }
+
+            function insertPeople($firstname, $lastname, $number) {
+                //connecting to the MySQL server & checking connection
+                $conn = mysqli_connect(DB_HOST, DB_CREDS, DB_CREDS, DB_CREDS);
+                if (!$conn) {
+                    die("I'm sorry, your connection failed: " . mysqli_connect_error());
+                }
+                
+                $insert = "INSERT INTO people SET firstname = '$firstname', lastname = '$lastname', telephonenumber = '$number'";
+        
+                //pass insert data into db
+                $result = $conn->query($insert);
+            
+        
+                //close the connection
+                mysqli_close($conn);
+            }
+
+
+             //show information from the database
+            function peopleInfo() {
+                //connecting to the MySQL server & checking connection
+                $conn = mysqli_connect(DB_HOST, DB_CREDS, DB_CREDS, DB_CREDS);
+                if (!$conn) {
+                    die("I'm sorry, your connection failed: " . mysqli_connect_error());
+                }
+
+                //access people table
+                $sql = "SELECT * FROM people";
+                $result = mysqli_query($conn, $sql);
+
+                //show the information about the people
+                if (mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        $delurl = "[<a href='https://codd.cs.gsu.edu/~cshelton7/week5.php?cmd=delete&id={$row['id']}'>delete</a>]";
+                        echo "ID: " . $row["id"] . " Name: " . $row["firstname"] . " " . $row["lastname"] . " Number: " . $row["telephonenumber"] . " $delurl<br>";
+                    }
+                }
+                else {
+                    echo "No results.";
+                }
+
+                //close the connection
+                mysqli_close($conn);
+            }
+
+            function deletePeople($id) {
+                //connecting to the MySQL server & checking connection
+                $conn = mysqli_connect(DB_HOST, DB_CREDS, DB_CREDS, DB_CREDS);
+                if (!$conn) {
+                    die("I'm sorry, your connection failed: " . mysqli_connect_error());
+                }
+                
+                $del = "DELETE FROM people WHERE id = '$id' ";
+                
+                $result = $conn->query($del);
+                
+                mysqli_close($conn);
+            }
             
         ?>
-        <Title> Week 5</Title>
         
-        <script src="./jquery/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" href="./foundation/css/foundation.css">
         
-        <style>
-            .cell {
-                border: 1px solid black;
-            }
-            #entire {
-                margin: 5px;
-            }
-            #nav {
-                top: 0px;
-                width: 100%;
-                border: 1px solid black;
-                text-align: right;
-                height: auto;
-                padding: 5px;
-            }
-            .butt {
-                border:none;
-                background: none;
-                font-size: 15px;
-            }
-            .butt:hover {
-                opacity: 0.5;
-            }
-            #top_pic {
-                width: 100%;
-                height: 300px;
-                object-fit: cover;
-            }
-            #bodytxt {
-                padding: 50px;
-                text-align: center;
-                height: inherit;
-            }
-            #sidebar {
-                background: lightpink;
-                height: 58vh;
-                font-size: 15px;
-                padding: 5px;
-                border-right: none !important;
-            }
-            footer {
-                width: 100%;
-                bottom: 0px;
-                border: none !important;
-            }
-            #copyright {
-                text-align: left;
-                margin: 15px;
-                float: left !important; 
-            }
-            #d_credit {
-                text-align: right;
-                margin: 15px;
-                float: right;
-            }
-            
-        </style>
+        <form method="get">
+            First Name: <input type="text" name="firstn"><br>
+            Last Name: <input type="text" name="lastn"><br>
+            Phone Number: <input type="text" name="telnum"><br>
+            <input type="submit" value="Submit">
+        </form>
 
-        <script>
-            function changeBody() {
-                document.getElementById("bodytxt").innerHTML = "Hey, you changed me! The girl in the picture above is a character named Komi from a manga about a shy girl who had a hard time interacting with others. It is a comedic, slice of life series.";
-                
+        <?php
+            //check & get information to the db
+            if ($_GET['lastn'] && $_GET['firstn'] != ''){
+                insertPeople($_GET['firstn'], $_GET['lastn'], $_GET['telnum']);   
             }
 
-            function alertfunc() {
-                alert("Hello! This is a page about manga!");
-            }  
-        </script>
+            if($_GET['cmd'] == 'delete') {
+                $id = $_GET['id'];
+                deletePeople($id);
+            }
 
-    </head>
-    <body> 
-            
-            <div id="nav">
-                <button class="butt" onclick="changeBody()">Update Body</button> |
-                <button class="butt" onclick="alertfunc()">Alert</button>
-            </div>
-
-            <img id="top_pic" class="cell small-12 medium-12 large-12" src="https://i.postimg.cc/d1Qp0mpg/komi.jpg"/>
-            <div id="entire">
-                <div class="grid-x">
-                        <div id="sidebar" class="cell small-4 medium-4 large-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div> 
-
-                        <div class="cell small-8 medium-8 large-10">
-                            <p id="bodytxt">Hi! According to the dictionary, manga is "a style of Japanese comic books and graphic novels, typically aimed at adults as well as children." </p>
-                            <?php showToday(); ?>
-                        </div> 
-                    
-                </div>
-            </div>
-    </body>
-    <footer class="cell small-12 medium-12 large-12">
-        <div id="copyright">
-            © Constance Shelton, All Rights Reserved
-        </div>
-        <div id="d_credit">
-            Design by Constance Shelton & Robert Joseph, Ph.D.
-        </div>
-    </footer>
-</html>
+        peopleInfo();
+              
+        ?>
